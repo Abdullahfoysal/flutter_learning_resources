@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
+
+class ReviewAndRating extends StatefulWidget {
+  @override
+  _ReviewAndRatingState createState() => _ReviewAndRatingState();
+}
+
+class _ReviewAndRatingState extends State<ReviewAndRating> {
+  var _ratingController = TextEditingController();
+  double rating = 1.0;
+  String reviewComment = 'It was Good';
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: Container(
+        height: 250.0,
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              SmoothStarRating(
+                color: Colors.yellow,
+                borderColor: Colors.green,
+                rating: rating,
+                isReadOnly: false,
+                size: 40,
+                filledIconData: Icons.star,
+                halfFilledIconData: Icons.star_half,
+                defaultIconData: Icons.star_border,
+                starCount: 5,
+                allowHalfRating: false,
+                spacing: 2.0,
+                onRated: (value) {
+                  print("rating value -> $value");
+                  setState(() {
+                    rating = value;
+                  });
+                  // print("rating value dd -> ${value.truncate()}");
+                },
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              TextFormField(
+                initialValue: 'It was good',
+                maxLines: 3,
+                maxLength: 100,
+                keyboardType: TextInputType.multiline,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "How was our service?",
+                  labelText: "Review our service",
+                ),
+                onChanged: (val) {
+                  setState(() {
+                    reviewComment = val;
+                  });
+                },
+              ),
+              RaisedButton.icon(
+                  color: Colors.green,
+                  onPressed: () {
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                  },
+                  icon: Icon(
+                    Icons.rate_review,
+                    color: Colors.white,
+                  ),
+                  label: Text('Submit')),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

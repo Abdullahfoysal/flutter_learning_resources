@@ -1,0 +1,33 @@
+ Widget _fAQ() => Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Text('FAQ 1: How do you reach to my location ?'),
+              ExpandChild(
+                expandedHint: 'FAQ 1:',
+                collapsedHint: 'FAQ 1:',
+                hideArrowOnExpanded: false,
+                arrowColor: showRatingReviewIconColor,
+                arrowSize: 20,
+                expandArrowStyle: ExpandArrowStyle.both,
+                icon: Icons.restore_page,
+                hintTextStyle: TextStyle(
+                  fontSize: 12.0,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.1),
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Text(
+                        'Service provider will contract you just before the service date.Surely he will reach you within time'),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
